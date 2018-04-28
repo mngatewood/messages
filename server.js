@@ -12,7 +12,7 @@ server.on('request', (request, response) => {
   }
 
   else if (request.method === 'POST') {
-    let newMessage = { 'id': new Date() };
+    let newMessage = messages[3];
 
     request.on('data', (data) => {
       newMessage = Object.assign(newMessage, JSON.parse(data));
@@ -30,14 +30,15 @@ const getAllMessages = (response) => {
   response.end();
 }
 
-const addMessage = (addedMessage, response) => {
+const addMessage = (newMessage, response) => {
   response.writeHead(201, {"Content-Type": "text/plain"});
-  response.write(JSON.stringify(addedMessage));
+  response.write(JSON.stringify(newMessage));
   response.end();
 }
 
 let messages = [
   { 'id': 1, 'user': 'brittany storoz', 'message': 'hi there!' },
   { 'id': 2, 'user': 'bob loblaw', 'message': 'check out my law blog' },
-  { 'id': 3, 'user': 'lorem ipsum', 'message': 'dolor set amet' }
+  { 'id': 3, 'user': 'lorem ipsum', 'message': 'dolor set amet' },
+  { 'id': 4, 'user': 'alex trebek', 'message': 'answer in the form of a question' }
 ];
